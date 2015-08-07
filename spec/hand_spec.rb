@@ -14,7 +14,7 @@ describe Hand do
   # end
   describe "::deal_from" do
     it "initialized with 5 cards" do
-      expect(deck).to receive(:deal).with(5)
+      expect(deck).to receive(:deal).with(Hand::HAND_SIZE)
       Hand.deal_from(deck)
     end
   end
@@ -34,7 +34,7 @@ describe Hand do
   describe "#deal_new_cards" do
     it "receive new cards" do
       allow(deck).to receive(:take).with(1).and_return([card])
-      
+
       hand.discard([0,1])
       hand.deal_new_cards(deck.take(1))
       expect(hand.cards.length).to eq(4)

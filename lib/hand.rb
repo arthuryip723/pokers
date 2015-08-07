@@ -1,8 +1,10 @@
 require_relative 'deck'
 
 class Hand
+  HAND_SIZE = 5
+
   def self.deal_from(deck)
-    Hand.new(deck.deal(5))
+    Hand.new(deck.deal(HAND_SIZE))
   end
 
   attr_reader :cards
@@ -25,4 +27,13 @@ class Hand
     self.cards.concat(cards)
   end
 
+  private
+
+  def flush?
+    cards.map(&:suit).uniq.count == 1
+  end
+
+  def straight?
+    cards.sort
+  end
 end
