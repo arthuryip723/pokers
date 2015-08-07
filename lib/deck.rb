@@ -11,4 +11,11 @@ class Deck
     cards.shuffle
   end
 
+  def deal(num_cards)
+    cards.shift(num_cards)
+  end
+
+  def return(new_cards)
+    cards.concat(new_cards)
+  end
 end
