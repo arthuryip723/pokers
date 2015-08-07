@@ -1,7 +1,7 @@
 require 'card'
 
 describe Card do
-  describe "#initilize" do
+  describe "#initialize" do
     it "initialize with suit and value" do
       card = Card.new(:clubs, :king)
       expect(card.suit).to be(:clubs)
@@ -17,4 +17,24 @@ describe Card do
     end
   end
 
+  describe "#<=>" do
+    it "compares the power of cards" do
+      three = Card.new(:hearts, :three)
+      four  = Card.new(:hearts, :four)
+
+      # expect(four > three).to be true
+      # expect(three < four).to be false
+      expect(four <=> three).to be(1)
+      expect(three <=> four).to be(-1)
+    end
+
+    it "compares the power of suit" do
+      three_clubs = Card.new(:clubs, :three)
+      three_spades = Card.new(:spades, :three)
+
+      # expect(three_club < three_spades).to be true
+      # expect(three_spades < three_club).to be false
+      expect(three_clubs <=> three_spades).to eq -1
+    end
+  end
 end
